@@ -1,0 +1,309 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: S1_R1 - AT1_PBE 1
+meta:
+  id: wrk_231ad80861b540d1a854728937fe6fcd
+  created: 1771850853516
+  modified: 1771850853516
+  description: ""
+collection:
+  - name: Categoria
+    meta:
+      id: fld_46957d4a6ac44ae7a70e2f9980c8b48b
+      created: 1771864934191
+      modified: 1771865116094
+      sortKey: -1771864934191
+      description: ""
+    children:
+      - url: localhost:5500/categoria/1
+        name: Atualizar
+        meta:
+          id: req_28cb7aba87804e7da9540c97b203b317
+          created: 1771863400889
+          modified: 1772449331223
+          isPrivate: false
+          description: ""
+          sortKey: -1771865071985
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "descricao": "Material",
+              "data": "2024-05-10"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:5500/categoria
+        name: Adicionar
+        meta:
+          id: req_9d6f628a51e149d0846badef80a2a721
+          created: 1771863406244
+          modified: 1772449265002
+          isPrivate: false
+          description: ""
+          sortKey: -1771865071885
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "descricao": "Material",
+              "data": "2024-05-10"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:5500/categoria/4
+        name: Buscar por ID
+        meta:
+          id: req_76bc1f66315e49409a04518422422ece
+          created: 1771863408824
+          modified: 1772449279654
+          isPrivate: false
+          description: ""
+          sortKey: -1771865071785
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:5500/categoria
+        name: Buscar todos
+        meta:
+          id: req_958670575f68417193f5e896fcb87e42
+          created: 1771863412845
+          modified: 1772132443916
+          isPrivate: false
+          description: ""
+          sortKey: -1771865071685
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:5500/categoria/4
+        name: Excluir
+        meta:
+          id: req_250e3011977b4d79b7118bb8af21299e
+          created: 1771865057063
+          modified: 1772449304257
+          isPrivate: false
+          description: ""
+          sortKey: -1771865071585
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Produto
+    meta:
+      id: fld_7da8233546094c6796fc45cc943e6126
+      created: 1772122495262
+      modified: 1772122495262
+      sortKey: -1772122495262
+      description: ""
+    children:
+      - url: localhost:5500/produtos/3
+        name: Buscar por ID
+        meta:
+          id: req_d2b6389fcd2942049805796284957f95
+          created: 1772122506809
+          modified: 1772449389770
+          isPrivate: false
+          description: ""
+          sortKey: -1772122511981
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:5500/produtos
+        name: Buscar todos
+        meta:
+          id: req_5054736670044e08b66a8bf9772c8839
+          created: 1772122508935
+          modified: 1772449394294
+          isPrivate: false
+          description: ""
+          sortKey: -1772122511881
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:5500/produtos/3
+        name: Delete
+        meta:
+          id: req_75fb21cbb2ea4716843866d0009542c9
+          created: 1772122569030
+          modified: 1772449360522
+          isPrivate: false
+          description: ""
+          sortKey: -1772122512281
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:5500/produtos
+        name: Adicionar
+        meta:
+          id: req_298a326988bd4951a36b6fd04c5ee89c
+          created: 1772122571361
+          modified: 1772451767638
+          isPrivate: false
+          description: ""
+          sortKey: -1772122512081
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: idCategoria
+              value: "1"
+              description: ""
+              disabled: false
+            - name: nome
+              value: Lapis de escrever
+              description: ""
+              disabled: false
+            - name: valor
+              value: "1.99"
+              description: ""
+              disabled: false
+            - name: image
+              value: ""
+              description: ""
+              disabled: false
+              fileName: C:\Users\45756293833\Downloads\lapis_de_escrever.webp
+              type: file
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:5500/produtos/3
+        name: Atualizar
+        meta:
+          id: req_77b41057a0a24d28962307fecace2571
+          created: 1772122572912
+          modified: 1772449378974
+          isPrivate: false
+          description: ""
+          sortKey: -1772122512181
+        method: PUT
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_b915b7dae59edfcedf6526887d05290d83b27109
+    created: 1771850853531
+    modified: 1771850853531
+environments:
+  name: Base Environment
+  meta:
+    id: env_b915b7dae59edfcedf6526887d05290d83b27109
+    created: 1771850853525
+    modified: 1771850853525
+    isPrivate: false
