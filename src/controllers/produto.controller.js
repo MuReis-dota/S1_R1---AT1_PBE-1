@@ -1,4 +1,5 @@
-const { produtoModel } = require('../model/produto.model.js');
+import categoriaModel from "../model/categoria.model.js";
+import produtoModel from "../model/produto.model.js"
 
 const produtoController = {
     upload: async (req, res) => {
@@ -23,14 +24,14 @@ const produtoController = {
         }
     },
     criarProduto: async (req, res) => {
-    try {
-            const { idCategoria, nome, valor, vinculoImagem, data } = req.body;
+        try {
+            const { idCategoria, nome, valor, vinculoImagem} = req.body;
 
             if (!nome || nome.length < 3 || valor <= 0) {
                 return res.status(400).json({ message: 'Dados inválidos' });
             }
 
-            const resultado = await produtoModel.inserirProduto(nome, valor, idCategoria, vinculoImagem, data);
+            const resultado = await produtoModel.InserirProduto(idCategoria, nome, valor, vinculoImagem);
 
             if (resultado.affectedRows === 1 && resultado.insertId !== 0) {
                 return res.status(201).json({
@@ -50,7 +51,7 @@ const produtoController = {
     },
     buscarTodosProdutos: async (req, res) => {
         try {
-            const resultado = await produtoModel.selecionarTodos();
+            const resultado = await produtoModel.SelecionaTodosProdutos();
             if (resultado.length === 0) { //verifica se o resultado é igual a 0(zero) ou não
                 return res.status(200).json({ message: 'A tabela selecionada não contém dados' });
             }
@@ -60,6 +61,73 @@ const produtoController = {
             res.status(500).json({ message: 'Ocorreu um erro no servidor.', errorMessage: error.message });
         }
     },
+    buscarProdutoPorID: async (req, res) => {
+        try {
+            const id = Number(req.params.idCategoria);
+            if (!id || !Number.isInteger(id)) {
+                res.status(400).json({ message: 'Informe um identificador(ID) válido fazendo favor' })
+            }
+            const resultado = await produtoModel.selecionaProdutoPorID(id)
+            res.status(200).json({ message: resultado })
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Ocorreu um erro no servidor.', errorMessage: error.message });
+        }
+    },
+    atualizarProduto: async (req, res) => {
+        try {
+            let idProduto = Number(req.params.idProduto);
+            let { idCategoria, nome, valor, vinculoImagem } = req.body;
+
+            if (!idCategoria || !nome || !valor || !isNaN(vinculoImagem)) {
+                return res.status(400).json({ message: 'Verifique os dados enviados e tente novamente' });
+            };
+
+            const novoProduto = await produtoModel.alterarProduto(idProduto)
+            if (novoProduto.length === 0) {
+                throw new error('Registro não localizado');
+            }
+
+            const novoNome = nome ?? novoProduto[0].nome;
+            const novoValor = valor ?? novoProduto[0].valor;
+            const novoVinculoImagem = vinculoImagem ?? novoProduto[0].vinculoImagem
+
+            const resultado = await categoriaModel.alterarCategoria(idCategoria, novoNome, novoValor, novoVinculoImagem)
+
+            if (resultado.changeDows === 0) {
+                throw new error('Ocorreu um ero ao atualizar o produto');
+            }
+            res.status(200).json({ message: 'Registro atualizado com sucesso', data: resultado });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Ocorreu um erro no servidor.', errorMessage: error.message })
+        }
+    },
+
+    excluirProduto: async (req, res) => {
+        try {
+            const id = Number(req.params.idProduto);
+            if (!id || !Number.isInteger(id)) {
+                return res.status(400).json({ message: 'Forneça um ID válido' });
+            }
+
+            const produtoSelecionado = await produtoModel.deletarProduto(id);
+            console.log
+            if (produtoSelecionado.length === 0) {
+                throw new Error("Registro não localizado");
+            } else {
+                const resultado = await produtoModel.deletarProduto(id);
+                if (resultado.affectedRows === 1) {
+                    res.status(200).json({ message: 'Produto excluído com sucesso', data: resultado });
+                } else {
+                    throw new Error("Não foi possível excluír o produto");
+                }
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Ocorreu um erro no servidor', errorMessage: error.message });
+        }
+    }
 };
 
 export default produtoController;

@@ -1,4 +1,4 @@
-import { pool } from '../config/produto.multer.js'; // Ou o nome correto do seu arquivo de banco
+import pool from "../config/db.js";
 
 const categoriaModel = {
 

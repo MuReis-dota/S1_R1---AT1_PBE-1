@@ -1,10 +1,13 @@
+import categoriaModel from "../model/categoria.model.js";
+
 const categoriaController = {
     buscarTodasCategorias: async (req, res) => {
         try {
-            const resultado = await categoriaModel.buscarTodasCategorias();
+            const resultado = await categoriaModel.SelecionaTodosCategoria();
             if (resultado === 0) {
                 return res.status(200).json({ message: 'A tabela selecionada não tem dados nenhum' });
             }
+            return res.status(200).json({message: resultado})
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Ocorreu um erro no servidor.', errorMessage: error.message });
@@ -17,8 +20,8 @@ const categoriaController = {
             if (!id || !Number.isInteger(id)) {
                 res.status(400).json({ message: 'Informe um identificador(ID) válido fazendo favor' })
             }
-            const resultado = await categoria
-            res.status(200).json({ message: 'Ocorreu um erro no servidor', })
+            const resultado = await categoriaModel.selecionaCategoriaPorID(id)
+            res.status(200).json({ message: resultado })
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Ocorreu um erro no servidor.', errorMessage: error.message });
@@ -52,7 +55,7 @@ const categoriaController = {
 
             descricao = descricao.trim();
 
-            if (!idCategoria || !descricao || !data || typeof idCategoria !== 'number' || !isNaN(descricao) || isNaN(data) || descricao.trim().length < 3) {
+            if (!idCategoria || !descricao || !data || !isNaN(descricao) || descricao.trim().length < 3) {
                 return res.status(400).json({ message: 'Verifique os dados enviados e tente novamente' });
             };
 

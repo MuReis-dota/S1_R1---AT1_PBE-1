@@ -1,13 +1,15 @@
-const express = require('express');
-const categoriaRoutes = express.Router();
+import { Router } from 'express';
+import produtoController from '../controllers/produto.controller.js';
+import uploadImagem from "../middlewares/produto.middlewares.js";
 
-const {categoriaController} = require('../controllers/categoria.controller');
+const produtoRoutes = Router();
 
-produtoRoutes.get('/categorias', categoriaController.buscarTodasCategorias);
-produtoRoutes.get('/produtos/:idProduto', categoriaController.buscarCategoriaPorID);
-produtoRoutes.post('/produtos', categoriaController.incluirCategoria);
-produtoRoutes.put('/produtos/:idProduto', categoriaController.atualizarCategoria);
-produtoRoutes.delete('/produtos/:idProduto', categoriaController.excluirCategoria);
+produtoRoutes.post('/produtos/images', produtoController.criarProduto);
+produtoRoutes.get('/produtos', produtoController.buscarTodosProdutos);
+produtoRoutes.get('/produtos/:idProduto', produtoController.buscarProdutoPorID);
+produtoRoutes.post('/produtos', produtoController.criarProduto);
+produtoRoutes.put('/produtos/:idProduto', produtoController.atualizarProduto);
+produtoRoutes.delete('/produtos/:idProduto', produtoController.excluirProduto);
 
 
-module.exports = {categoriaRoutes};
+export default produtoRoutes;

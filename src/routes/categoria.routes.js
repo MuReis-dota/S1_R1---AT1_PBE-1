@@ -1,6 +1,7 @@
-import express from 'express';
+import { Router } from 'express';
 import categoriaController from '../controllers/categoria.controller.js';
-const categoriaRoutes = express.Router();
+
+const categoriaRoutes = Router();
 
 categoriaRoutes.get('/categoria', categoriaController.buscarTodasCategorias);
 categoriaRoutes.get('/categoria/:idCategoria', categoriaController.buscarCategoriaPorID);
